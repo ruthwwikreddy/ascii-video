@@ -3,14 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ASCII Video</title>
+    
+    <!-- Primary SEO Meta Tags for Ruthwik Reddy -->
+    <title>Ruthwik Reddy - ASCII Studio | Real-time ASCII Video & WebCam Art Generator</title>
+    <meta name="title" content="Ruthwik Reddy - ASCII Studio | Real-time ASCII Video & WebCam Art Generator">
+    <meta name="description" content="ASCII Studio created by Ruthwik Reddy. Experience high-performance real-time webcam video to ASCII art conversion with custom glyphs, contrast tuning, and instant snapshots. Developed by Ruthwik Reddy.">
+    <meta name="keywords" content="Ruthwik Reddy, Ruthwik Reddy ASCII, ASCII Studio, ASCII Art Generator, Real-time ASCII Video, WebCam ASCII, Canvas ASCII Engine, Creative Coding, Developer Ruthwik Reddy">
+    <meta name="author" content="Ruthwik Reddy">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ruthwikreddy.com/ascii-video">
+
+    <!-- Open Graph / Facebook SEO -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ruthwikreddy.com/ascii-video">
+    <meta property="og:title" content="Ruthwik Reddy - ASCII Studio | Real-time ASCII Art Generator">
+    <meta property="og:description" content="Explore real-time webcam ASCII rendering created by Ruthwik Reddy. Featuring monochrome aesthetic, customizable density, contrast, and typography presets.">
+    <meta property="og:site_name" content="Ruthwik Reddy Portfolio & Projects">
+
+    <!-- Twitter SEO Card -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://ruthwikreddy.com/ascii-video">
+    <meta property="twitter:title" content="Ruthwik Reddy - ASCII Studio">
+    <meta property="twitter:description" content="Real-time web video ASCII art renderer created by developer Ruthwik Reddy.">
+
+    <!-- Structured Data (JSON-LD) for SEO schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "ASCII Studio by Ruthwik Reddy",
+      "operatingSystem": "Web Browser",
+      "applicationCategory": "MultimediaApplication",
+      "creator": {
+        "@type": "Person",
+        "name": "Ruthwik Reddy",
+        "jobTitle": "Software Engineer & Creative Developer"
+      },
+      "description": "High-performance browser-based ASCII Video Generator with real-time video stream processing developed by Ruthwik Reddy."
+    }
+    </script>
+
+    <!-- Modern Typography & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
     <style>
         :root {
-            --bg: #000000;
-            --ui-panel: rgba(15, 15, 15, 0.85);
-            --accent: #ffffff;
-            --glass: rgba(255, 255, 255, 0.1);
-            --border: rgba(255, 255, 255, 0.15);
+            /* Strict Monochrome Black & White Palette */
+            --bg-dark: #000000;
+            --panel-bg: rgba(10, 10, 10, 0.85);
+            --panel-border: rgba(255, 255, 255, 0.15);
+            
+            --accent-primary: #ffffff;
+            --accent-hover: #e2e8f0;
+            
+            --text-main: #ffffff;
+            --text-muted: #a1a1aa;
+            --text-dim: #71717a;
+            
+            --glass-blur: blur(24px) saturate(180%);
+            --radius-xl: 24px;
+            --radius-lg: 16px;
+            --radius-md: 12px;
+            --radius-sm: 8px;
+            
+            --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
         }
 
         body, html {
@@ -18,13 +83,26 @@
             padding: 0;
             width: 100%;
             height: 100%;
-            background: var(--bg);
-            color: var(--accent);
-            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
             overflow: hidden;
         }
 
-        /* The Mirror Art */
+        /* Accessibly hidden SEO Heading */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        /* Canvas Background */
         #ascii-canvas {
             position: fixed;
             top: 0;
@@ -32,204 +110,594 @@
             width: 100vw;
             height: 100vh;
             object-fit: cover;
+            z-index: 1;
         }
 
-        /* Vertical Navigation Bar (Right) */
-        .side-nav {
+        /* Top Header Branding */
+        .top-header {
             position: fixed;
-            right: 20px;
+            top: 24px;
+            left: 28px;
+            right: 28px;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            pointer-events: none;
+        }
+
+        .brand-badge {
+            pointer-events: auto;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--panel-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            padding: 10px 20px;
+            border-radius: 99px;
+            border: 1px solid var(--panel-border);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+        }
+
+        .brand-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #ffffff;
+            color: #000000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .brand-title {
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            color: #ffffff;
+        }
+
+        .brand-author {
+            font-size: 11px;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 99px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            letter-spacing: 0.5px;
+        }
+
+        .live-status {
+            pointer-events: auto;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--panel-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            padding: 8px 16px;
+            border-radius: 99px;
+            border: 1px solid var(--panel-border);
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ffffff;
+            box-shadow: 0 0 8px #ffffff;
+            animation: pulse-dot 2s infinite;
+        }
+
+        .status-dot.inactive {
+            background: #52525b;
+            box-shadow: none;
+            animation: none;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.3; transform: scale(0.85); }
+        }
+
+        /* Dock Navigation Bar (Right) */
+        .dock-container {
+            position: fixed;
+            right: 28px;
             top: 50%;
             transform: translateY(-50%);
             z-index: 1000;
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            background: var(--ui-panel);
-            backdrop-filter: blur(20px);
-            padding: 15px;
-            border-radius: 40px;
-            border: 1px solid var(--border);
-            transition: opacity 0.4s, transform 0.4s;
+            gap: 14px;
+            background: var(--panel-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            padding: 14px;
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--panel-border);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+            transition: var(--transition-smooth);
         }
 
-        .side-nav.hidden {
-            opacity: 0;
-            transform: translateY(-50%) translateX(100px);
+        .dock-container.drawer-open {
+            right: 408px;
+            opacity: 1 !important;
+            transform: translateY(-50%) translateX(0) !important;
         }
 
-        /* Action Buttons */
-        .action-btn {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: 1px solid var(--border);
-            background: transparent;
-            color: white;
+        .dock-container.autohide {
+            opacity: 0.2;
+            transform: translateY(-50%) translateX(15px);
+        }
+
+        .dock-container.autohide:hover {
+            opacity: 1;
+            transform: translateY(-50%) translateX(0);
+        }
+
+        .dock-btn {
+            position: relative;
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.2s;
-            flex-direction: column;
-            gap: 2px;
+            font-size: 18px;
+            transition: var(--transition-smooth);
         }
 
-        .action-btn:hover {
-            background: var(--accent);
-            color: black;
+        .dock-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.4);
         }
 
-        .action-btn.active {
-            background: var(--accent);
-            color: black;
+        .dock-btn.active {
+            background: #ffffff;
+            color: #000000;
+            border-color: #ffffff;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
         }
 
-        /* Settings Drawer (Slides from Right) */
-        .settings-drawer {
+        /* Tooltip */
+        .dock-btn .tooltip {
+            position: absolute;
+            right: 62px;
+            top: 50%;
+            transform: translateY(-50%) translateX(8px);
+            background: var(--panel-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--panel-border);
+            padding: 6px 12px;
+            border-radius: var(--radius-sm);
+            font-size: 11px;
+            font-weight: 600;
+            white-space: nowrap;
+            color: #ffffff;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition-smooth);
+        }
+
+        .dock-btn:hover .tooltip {
+            opacity: 1;
+            transform: translateY(-50%) translateX(0);
+        }
+
+        .dock-divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.15);
+            margin: 2px 4px;
+        }
+
+        /* Control Panel Drawer */
+        .control-panel {
             position: fixed;
-            right: -350px;
+            right: -420px;
             top: 0;
-            width: 300px;
+            width: 380px;
             height: 100vh;
-            background: var(--ui-panel);
-            backdrop-filter: blur(30px);
+            background: rgba(8, 8, 8, 0.95);
+            backdrop-filter: blur(32px);
+            -webkit-backdrop-filter: blur(32px);
             z-index: 999;
-            padding: 40px 25px;
-            border-left: 1px solid var(--border);
+            padding: 32px 28px;
+            border-left: 1px solid var(--panel-border);
             transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             display: flex;
             flex-direction: column;
-            gap: 30px;
+            gap: 28px;
+            overflow-y: auto;
+            box-shadow: -20px 0 50px rgba(0, 0, 0, 0.9);
         }
 
-        .settings-drawer.open {
+        .control-panel.open {
             right: 0;
         }
 
-        .drawer-header {
-            font-size: 12px;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            opacity: 0.5;
-            margin-bottom: 10px;
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--panel-border);
         }
 
-        .control-group {
+        .panel-title {
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #ffffff;
+        }
+
+        .close-panel-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 18px;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 50%;
+            transition: var(--transition-smooth);
+        }
+
+        .close-panel-btn:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .control-section {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 14px;
         }
 
-        .control-group label {
+        .section-label {
             font-size: 11px;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.2px;
+            color: var(--text-dim);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .val-badge {
+            color: #ffffff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px 8px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Black & White Sliders */
+        .range-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
         }
 
         input[type="range"] {
+            -webkit-appearance: none;
             width: 100%;
-            accent-color: white;
-            cursor: pointer;
+            height: 6px;
+            border-radius: 3px;
+            background: rgba(255, 255, 255, 0.15);
+            outline: none;
+            transition: var(--transition-smooth);
         }
 
-        /* Style Chips */
-        .style-grid {
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #ffffff;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            transition: var(--transition-smooth);
+        }
+
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
+        }
+
+        /* Preset Cards Grid */
+        .preset-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(2, 1fr);
             gap: 10px;
         }
 
-        .chip {
-            padding: 10px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            font-size: 10px;
-            text-align: center;
+        .preset-card {
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--panel-border);
+            border-radius: var(--radius-md);
             cursor: pointer;
-            transition: 0.2s;
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
         }
 
-        .chip:hover, .chip.active {
-            background: white;
-            color: black;
+        .preset-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
         }
 
-        /* Branding */
-        .logo {
-            position: fixed;
-            top: 30px;
-            left: 30px;
+        .preset-card.active {
+            background: #ffffff;
+            border-color: #ffffff;
+        }
+
+        .preset-card.active .preset-name,
+        .preset-card.active .preset-preview {
+            color: #000000;
+        }
+
+        .preset-name {
             font-size: 12px;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            opacity: 0.4;
-            pointer-events: none;
+            font-weight: 600;
+            color: var(--text-main);
         }
 
-        /* Internal Processing Elements */
+        .preset-preview {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: var(--text-dim);
+            letter-spacing: 1px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        /* Toggle Switch */
+        .toggle-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 14px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--panel-border);
+            border-radius: var(--radius-md);
+        }
+
+        .toggle-label {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 44px;
+            height: 24px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider-round {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(255, 255, 255, 0.2);
+            transition: .3s;
+            border-radius: 24px;
+        }
+
+        .slider-round:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .3s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider-round {
+            background-color: #ffffff;
+        }
+
+        input:checked + .slider-round:before {
+            transform: translateX(20px);
+            background-color: #000000;
+        }
+
+        .panel-footer {
+            margin-top: auto;
+            padding-top: 20px;
+            border-top: 1px solid var(--panel-border);
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 10px;
+            color: var(--text-dim);
+            letter-spacing: 0.5px;
+        }
+
+        .author-link {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .author-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Scrollbar */
+        .control-panel::-webkit-scrollbar {
+            width: 4px;
+        }
+        .control-panel::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+
         #video, #buffer { display: none; }
     </style>
 </head>
 <body>
 
-    <div class="logo">ASCII Video</div>
+    <!-- Accessible SEO H1 Header -->
+    <h1 class="sr-only">ASCII Studio by Ruthwik Reddy - Real-time Monochrome ASCII Video Generator</h1>
 
+    <!-- Header Branding -->
+    <header class="top-header">
+        <div class="brand-badge">
+            <div class="brand-icon">RR</div>
+            <span class="brand-title">ASCII Studio</span>
+            <span class="brand-author">Ruthwik Reddy</span>
+        </div>
+
+        <div class="live-status">
+            <div class="status-dot inactive" id="status-dot"></div>
+            <span id="status-text">Camera Off</span>
+        </div>
+    </header>
+
+    <!-- ASCII Main Rendering Canvas -->
     <canvas id="ascii-canvas"></canvas>
 
-    <!-- Side Navigation Bar -->
-    <nav class="side-nav" id="side-nav">
-        <button id="start-btn" class="action-btn" title="Start Camera">
-            <span style="font-size: 18px;">Camera</span>
+    <!-- Dock Controls -->
+    <nav class="dock-container" id="dock-nav" aria-label="Main Controls">
+        <button id="start-btn" class="dock-btn" aria-label="Toggle Camera Stream">
+            <i class="bi bi-camera-video-fill"></i>
+            <span class="tooltip">Toggle Camera</span>
         </button>
-        <button id="refine-btn" class="action-btn" title="Refine Look">
-            <span>SET</span>
+
+        <button id="refine-btn" class="dock-btn" aria-label="Open Control Panel">
+            <i class="bi bi-sliders"></i>
+            <span class="tooltip">Controls</span>
         </button>
-        <button id="capture-btn" class="action-btn" title="Save Frame">
-            <span>SNAP</span>
+
+        <div class="dock-divider"></div>
+
+        <button id="capture-btn" class="dock-btn" aria-label="Save Snapshot">
+            <i class="bi bi-camera-fill"></i>
+            <span class="tooltip">Take Snapshot</span>
         </button>
-        <button id="fs-btn" class="action-btn" title="Fullscreen">
-            <span>FULL</span>
+
+        <button id="fs-btn" class="dock-btn" aria-label="Fullscreen Toggle">
+            <i class="bi bi-arrows-angle-expand"></i>
+            <span class="tooltip">Fullscreen</span>
         </button>
     </nav>
 
-    <!-- Settings Drawer -->
-    <div class="settings-drawer" id="drawer">
-        <div class="drawer-header">Refine Design</div>
-        
-        <div class="control-group">
-            <label id="lbl-detail">Detail Level: High</label>
-            <input type="range" id="res-slider" min="0.05" max="0.35" step="0.01" value="0.15">
+    <!-- Side Control Panel / Drawer -->
+    <aside class="control-panel" id="control-panel" aria-label="ASCII Control Settings">
+        <div class="panel-header">
+            <div class="panel-title">
+                <i class="bi bi-sliders2"></i> Monochromatic Control
+            </div>
+            <button class="close-panel-btn" id="close-panel-btn" aria-label="Close Panel">
+                <i class="bi bi-x-lg"></i>
+            </button>
         </div>
 
-        <div class="control-group">
-            <label id="lbl-pop">Contrast (Pop): 1.2x</label>
-            <input type="range" id="contrast-slider" min="0.5" max="3.0" step="0.1" value="1.2">
-        </div>
-
-        <div class="control-group">
-            <label>Character Set</label>
-            <div class="style-grid">
-                <div class="chip active" onclick="setChars('pro')">Elite</div>
-                <div class="chip" onclick="setChars('minimal')">Soft</div>
-                <div class="chip" onclick="setChars('binary')">Binary</div>
-                <div class="chip" onclick="setChars('math')">Theory</div>
-                <div class="chip" onclick="setChars('blocks')">Solid</div>
-                <div class="chip" onclick="setChars('dots')">Stipple</div>
+        <!-- Detail Resolution -->
+        <div class="control-section">
+            <div class="section-label">
+                <span>Density / Detail</span>
+                <span class="val-badge" id="val-detail">High</span>
+            </div>
+            <div class="range-wrapper">
+                <input type="range" id="res-slider" min="0.05" max="0.35" step="0.01" value="0.15">
             </div>
         </div>
 
-        <div class="control-group">
-            <button id="invert-btn" class="chip" style="width: 100%;">Invert Black/White</button>
+        <!-- Contrast Control -->
+        <div class="control-section">
+            <div class="section-label">
+                <span>Contrast Boost</span>
+                <span class="val-badge" id="val-contrast">1.2x</span>
+            </div>
+            <div class="range-wrapper">
+                <input type="range" id="contrast-slider" min="0.5" max="3.0" step="0.1" value="1.2">
+            </div>
         </div>
 
-        <div style="margin-top: auto; opacity: 0.3; font-size: 9px; text-transform: uppercase; letter-spacing: 2px;">
-            Elite ASCII Engine v4.0
+        <!-- Glyph Presets -->
+        <div class="control-section">
+            <div class="section-label">
+                <span>Character Ramp</span>
+            </div>
+            <div class="preset-grid">
+                <div class="preset-card active" onclick="setChars('pro', this)">
+                    <span class="preset-name">Elite Standard</span>
+                    <span class="preset-preview">$@B%8&WM#*oah</span>
+                </div>
+                <div class="preset-card" onclick="setChars('minimal', this)">
+                    <span class="preset-name">Minimal Ramp</span>
+                    <span class="preset-preview"> .:-=+*#%@</span>
+                </div>
+                <div class="preset-card" onclick="setChars('binary', this)">
+                    <span class="preset-name">Binary Matrix</span>
+                    <span class="preset-preview">0 1 0 1 0 1</span>
+                </div>
+                <div class="preset-card" onclick="setChars('math', this)">
+                    <span class="preset-name">Theoretical</span>
+                    <span class="preset-preview">∞ ∑ π ∆ ∫ √</span>
+                </div>
+                <div class="preset-card" onclick="setChars('blocks', this)">
+                    <span class="preset-name">Shading Blocks</span>
+                    <span class="preset-preview"> ░ ▒ ▓ █</span>
+                </div>
+                <div class="preset-card" onclick="setChars('dots', this)">
+                    <span class="preset-name">Stipple Dots</span>
+                    <span class="preset-preview"> . · ° º O</span>
+                </div>
+            </div>
         </div>
-    </div>
+
+        <!-- Invert Theme -->
+        <div class="control-section">
+            <div class="toggle-row">
+                <span class="toggle-label">Invert Black / White</span>
+                <label class="switch">
+                    <input type="checkbox" id="invert-switch">
+                    <span class="slider-round"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="panel-footer">
+            <span>Created by <a href="https://ruthwikreddy.com" class="author-link" target="_blank" rel="noopener">Ruthwik Reddy</a></span>
+            <span>ASCII Video Engine v4.5 MONO</span>
+        </div>
+    </aside>
 
     <video id="video" autoplay playsinline></video>
     <canvas id="buffer"></canvas>
@@ -240,12 +708,13 @@
         const video = document.getElementById('video');
         const buffer = document.getElementById('buffer');
         const bCtx = buffer.getContext('2d', { willReadFrequently: true });
-        
-        // --- State Management ---
+
+        // --- Pure Black & White State Management ---
         const state = {
             res: 0.15,
             contrast: 1.2,
             inverted: false,
+            isStreaming: false,
             chars: "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\\|()1{}[]?-_+~<>i!lI;:,\"^' . ".split("").reverse()
         };
 
@@ -258,85 +727,130 @@
             dots: " .·°ºO".split("")
         };
 
-        // --- UI Interactions ---
-        const nav = document.getElementById('side-nav');
-        const drawer = document.getElementById('drawer');
+        // UI Selectors
+        const dockNav = document.getElementById('dock-nav');
+        const controlPanel = document.getElementById('control-panel');
         const startBtn = document.getElementById('start-btn');
-        let uiTimer;
+        const refineBtn = document.getElementById('refine-btn');
+        const closePanelBtn = document.getElementById('close-panel-btn');
+        const statusDot = document.getElementById('status-dot');
+        const statusText = document.getElementById('status-text');
 
-        function wakeUI() {
-            nav.classList.remove('hidden');
-            clearTimeout(uiTimer);
-            uiTimer = setTimeout(() => {
-                if (!drawer.classList.contains('open')) nav.classList.add('hidden');
-            }, 5000);
+        let autoHideTimer;
+
+        function resetAutoHide() {
+            dockNav.classList.remove('autohide');
+            clearTimeout(autoHideTimer);
+            autoHideTimer = setTimeout(() => {
+                if (!controlPanel.classList.contains('open')) {
+                    dockNav.classList.add('autohide');
+                }
+            }, 4000);
         }
 
-        window.addEventListener('mousemove', wakeUI);
-        window.addEventListener('touchstart', wakeUI);
+        window.addEventListener('mousemove', resetAutoHide);
+        window.addEventListener('touchstart', resetAutoHide);
+        resetAutoHide();
 
-        document.getElementById('refine-btn').onclick = () => {
-            drawer.classList.toggle('open');
-            document.getElementById('refine-btn').classList.toggle('active');
+        refineBtn.onclick = () => {
+            const isOpen = controlPanel.classList.toggle('open');
+            refineBtn.classList.toggle('active', isOpen);
+            dockNav.classList.toggle('drawer-open', isOpen);
         };
 
-        function setChars(key) {
+        closePanelBtn.onclick = () => {
+            controlPanel.classList.remove('open');
+            refineBtn.classList.remove('active');
+            dockNav.classList.remove('drawer-open');
+        };
+
+        function setChars(key, el) {
             state.chars = charSets[key];
-            document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
-            event.target.classList.add('active');
+            document.querySelectorAll('.preset-card').forEach(c => c.classList.remove('active'));
+            el.classList.add('active');
         }
 
-        // --- Camera & Rendering ---
         startBtn.onclick = async () => {
-            try {
-                const stream = await navigator.mediaDevices.getUserMedia({ 
-                    video: { width: 1280, height: 720 }, 
-                    audio: false 
-                });
-                video.srcObject = stream;
-                startBtn.style.opacity = '0.3';
-                startBtn.pointerEvents = 'none';
-                render();
-            } catch (e) { alert("Camera Error: Please allow access."); }
+            if (!state.isStreaming) {
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({
+                        video: { width: { ideal: 1280 }, height: { ideal: 720 } },
+                        audio: false
+                    });
+                    video.srcObject = stream;
+                    state.isStreaming = true;
+                    startBtn.classList.add('active');
+                    statusDot.classList.remove('inactive');
+                    statusText.innerText = "Camera Active";
+                    render();
+                } catch (e) {
+                    alert("Camera Permission Error: Please allow camera access.");
+                }
+            } else {
+                const stream = video.srcObject;
+                if (stream) {
+                    const tracks = stream.getTracks();
+                    tracks.forEach(track => track.stop());
+                }
+                video.srcObject = null;
+                state.isStreaming = false;
+                startBtn.classList.remove('active');
+                statusDot.classList.add('inactive');
+                statusText.innerText = "Camera Off";
+                ctx.fillStyle = state.inverted ? "#ffffff" : "#000000";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+            }
         };
 
         document.getElementById('res-slider').oninput = (e) => {
             state.res = parseFloat(e.target.value);
-            document.getElementById('lbl-detail').innerText = `Detail Level: ${state.res > 0.25 ? 'Ultra' : 'High'}`;
+            let label = "Medium";
+            if (state.res > 0.25) label = "Ultra High";
+            else if (state.res > 0.15) label = "High";
+            else if (state.res < 0.10) label = "Low";
+            document.getElementById('val-detail').innerText = label;
         };
 
         document.getElementById('contrast-slider').oninput = (e) => {
             state.contrast = parseFloat(e.target.value);
-            document.getElementById('lbl-pop').innerText = `Contrast (Pop): ${state.contrast.toFixed(1)}x`;
+            document.getElementById('val-contrast').innerText = `${state.contrast.toFixed(1)}x`;
         };
 
-        document.getElementById('invert-btn').onclick = () => state.inverted = !state.inverted;
+        document.getElementById('invert-switch').onchange = (e) => {
+            state.inverted = e.target.checked;
+        };
 
         document.getElementById('capture-btn').onclick = () => {
             const link = document.createElement('a');
-            link.download = `ascii-elite-${Date.now()}.png`;
-            link.href = canvas.toDataURL();
+            link.download = `ascii-ruthwik-reddy-${Date.now()}.png`;
+            link.href = canvas.toDataURL('image/png');
             link.click();
         };
 
         document.getElementById('fs-btn').onclick = () => {
-            if (!document.fullscreenElement) document.documentElement.requestFullscreen();
-            else document.exitFullscreen();
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+            } else {
+                document.exitFullscreen();
+            }
         };
 
+        // Strict Black & White Render Engine
         function render() {
-            const w = video.videoWidth * state.res;
-            const h = video.videoHeight * state.res;
+            if (!state.isStreaming) return;
 
-            if (w > 0) {
-                if (buffer.width !== w) {
+            const w = Math.floor(video.videoWidth * state.res);
+            const h = Math.floor(video.videoHeight * state.res);
+
+            if (w > 0 && h > 0) {
+                if (buffer.width !== w || buffer.height !== h) {
                     buffer.width = w;
                     buffer.height = h;
                     canvas.width = window.innerWidth;
                     canvas.height = window.innerHeight;
                 }
 
-                // Step 1: Process Mirror Image
+                // Process Mirror Frame
                 bCtx.save();
                 bCtx.translate(w, 0);
                 bCtx.scale(-1, 1);
@@ -345,34 +859,36 @@
 
                 const pixels = bCtx.getImageData(0, 0, w, h).data;
 
-                // Step 2: Clear Canvas
-                ctx.fillStyle = state.inverted ? "white" : "black";
+                // Clear Canvas (Strict Black or White)
+                ctx.fillStyle = state.inverted ? "#ffffff" : "#000000";
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
-                
-                // Step 3: Draw ASCII
-                ctx.fillStyle = state.inverted ? "black" : "white";
+
+                // Draw ASCII Characters (Strict White or Black)
                 const charW = canvas.width / w;
                 const charH = canvas.height / h;
-                ctx.font = `bold ${charH * 1.15}px monospace`;
+                ctx.font = `bold ${charH * 1.15}px 'JetBrains Mono', monospace`;
                 ctx.textAlign = "center";
+                ctx.fillStyle = state.inverted ? "#000000" : "#ffffff";
 
                 for (let y = 0; y < h; y++) {
                     for (let x = 0; x < w; x++) {
                         const i = (y * w + x) * 4;
-                        // Light calculation
-                        let brightness = (0.2126 * pixels[i] + 0.7152 * pixels[i+1] + 0.0722 * pixels[i+2]);
-                        
-                        // Contrast calculation
+
+                        // Perceptual Brightness Calculation
+                        let brightness = (0.2126 * pixels[i] + 0.7152 * pixels[i + 1] + 0.0722 * pixels[i + 2]);
+
+                        // Contrast Calculation
                         brightness = ((brightness - 128) * state.contrast) + 128;
                         brightness = Math.max(0, Math.min(255, brightness));
 
                         const charIdx = Math.floor((brightness / 255) * (state.chars.length - 1));
                         const char = state.chars[charIdx] || " ";
-                        
-                        ctx.fillText(char, x * charW + charW/2, y * charH + charH);
+
+                        ctx.fillText(char, x * charW + charW / 2, y * charH + charH);
                     }
                 }
             }
+
             requestAnimationFrame(render);
         }
 
