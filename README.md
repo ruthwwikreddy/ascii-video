@@ -1,5 +1,7 @@
 <div align="center">
+   
 # ASCII-Video
+
 **Open-source real-time webcam-to-ASCII art converter.**
 Transforms live video feeds into dynamic ASCII characters using browser-based image processing and canvas manipulation.
 [Source](https://github.com/ruthwwikreddy/ascii-video) · Built by [Ruthwik Reddy](https://www.ruthwikreddy.live/)
