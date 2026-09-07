@@ -1,23 +1,74 @@
-# ASCII Video
+<div align="center">
+# ASCII-Video
+**Open-source real-time webcam-to-ASCII art converter.**
+Transforms live video feeds into dynamic ASCII characters using browser-based image processing and canvas manipulation.
+[Source](https://github.com/ruthwwikreddy/ascii-video) · Built by [Ruthwik Reddy](https://www.ruthwikreddy.live/)
+MIT licensed · Client-side execution · No backend required
+</div>
 
-Hey! This is a simple project that takes your webcam and turns it into ASCII art in real-time. It's built with just HTML, CSS, and Vanilla JS.
+---
 
-### Why?
-Because ASCII is cool. It's a fun way to see yourself in a different perspective. Plus, it's a great way to learn about image processing and canvas manipulation.
+## Table of contents
+1. [What ASCII-Video does](#1-what-ascii-video-does)
+2. [How it Works](#2-how-it-works)
+3. [Quick start](#3-quick-start)
+4. [Features](#4-features)
+5. [Technical details](#5-technical-details)
+6. [Contributing](#6-contributing)
+7. [License](#7-license)
 
-### Features
-- **Real-time ASCII rendering**: It's fast and smooth.
-- **Customizable**: Adjust the detail level and contrast to get the look you want.
-- **Character Sets**: Choose from different character sets like "Elite", "Soft", "Binary", and more.
-- **Snapshots**: Take a picture of your ASCII self and save it as a PNG.
-- **Invert Mode**: Switch between dark and light themes.
+---
 
-### How to use
-Just open the `indext.html` file in your browser, allow camera access, and you're good to go!
+## 1. What ASCII-Video does
 
-### Tech Stack
-- HTML5 Canvas
-- Vanilla JavaScript
-- CSS3 (with some nice glassmorphism)
+| Capability | Detail |
+|---|---|
+| **Real-time Conversion** | Processes webcam frames instantly into ASCII characters using requestAnimationFrame. |
+| **Client-side Privacy** | All processing happens locally in the browser; no video data is ever sent to a server. |
+| **Dynamic Styling** | Support for multiple character sets (Elite, Soft, Binary) to change the aesthetic. |
+| **Snapshot Capture** | Ability to freeze and save the current ASCII frame as a PNG image. |
+| **Adaptive Contrast** | Invert mode and contrast adjustments to handle different lighting conditions. |
 
-Enjoy!
+## 2. How it Works
+
+```
+Webcam Feed   ──▶   Canvas Sampling   ──▶   Luminance Calculation   ──▶   Character Mapping   ──▶   DOM Rendering
+(MediaStream)      (Downsampled pixels)      (0-255 Gray scale)        (Value ➜ Char)          (HTML/CSS)
+```
+
+The system captures a frame from the webcam, calculates the brightness (luminance) of each pixel block, and maps that brightness to a specific character from a chosen set (e.g., `@` for dark, `.` for light).
+
+## 3. Quick start
+
+Since this is a frontend-only project, no installation is required.
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/ruthwwikreddy/ascii-video.git
+   cd ascii-video
+   ```
+
+2. **Launch the app**:
+   Open `index.html` in any modern web browser (Chrome, Firefox, Edge).
+
+3. **Grant Permission**:
+   Allow the browser to access your camera when prompted.
+
+## 4. Features
+
+- **Multiple Character Sets**: Choose between different ASCII styles to get varying levels of detail.
+- **Resolution Control**: Adjust the sampling rate to create a "lo-fi" or "high-def" ASCII effect.
+- **Invert Mode**: Instantly toggle between light and dark themes.
+- **PNG Export**: Save your ASCII art directly to your device.
+
+## 5. Technical details
+
+- **Frontend**: Vanilla JavaScript, HTML5 Canvas, CSS3.
+- **Performance**: Uses an off-screen canvas for pixel data sampling to maintain a high frame rate.
+- **Styling**: Implements a modern glassmorphism UI for a professional user experience.
+
+## 6. Contributing
+Contributions are welcome! If you have a new character set or a performance optimization, feel free to open a Pull Request.
+
+## 7. License
+Released under the **MIT License** — feel free to use, modify, and distribute it.
