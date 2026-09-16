@@ -65,28 +65,12 @@ Since this is a frontend-only project, no installation is required.
 
 ## 5. Technical details
 
-- **Frontend**: Vanilla JavaScript, HTML5 Canvas, CSS3.
-- **Performance**: Uses an off-screen canvas for pixel data sampling to maintain a high frame rate.
-- **Styling**: Implements a modern glassmorphism UI for a professional user experience.
+The project utilizes the HTML5 canvas element for real-time image processing and DOM manipulation. It leverages the MediaStream API to capture webcam feed and requestAnimationFrame for smooth frame-by-frame processing.
 
 ## 6. Contributing
-Contributions are welcome! If you have a new character set or a performance optimization, feel free to open a Pull Request.
+
+Contributions are welcome. Please submit a pull request with your changes.
 
 ## 7. License
-Released under the **MIT License** — feel free to use, modify, and distribute it.
-
----
-
-## 8. Known Limitations
-- Limited resolution control
-- Limited character set customization
-- No support for multiple webcam feeds
-
-## 9. Future Improvements
-- Realistic next engineering steps include improving performance for lower-end hardware and adding support for multiple webcam feeds.
-
-## 10. License and credits
 
 Released under the **MIT License**.
-
-Designed and engineered by **[Ruthwik Reddy](https://www.ruthwikreddy.live/)** · [github.com/ruthwwikreddy/ascii-video](https://github.com/ruthwwikreddy/ascii-video)
