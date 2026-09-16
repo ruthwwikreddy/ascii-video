@@ -1,5 +1,5 @@
 <div align="center">
-   
+
 # ASCII-Video
 
 **Open-source real-time webcam-to-ASCII art converter.**
@@ -74,3 +74,19 @@ Contributions are welcome! If you have a new character set or a performance opti
 
 ## 7. License
 Released under the **MIT License** — feel free to use, modify, and distribute it.
+
+---
+
+## 8. Known Limitations
+- Limited resolution control
+- Limited character set customization
+- No support for multiple webcam feeds
+
+## 9. Future Improvements
+- Realistic next engineering steps include improving performance for lower-end hardware and adding support for multiple webcam feeds.
+
+## 10. License and credits
+
+Released under the **MIT License**.
+
+Designed and engineered by **[Ruthwik Reddy](https://www.ruthwikreddy.live/)** · [github.com/ruthwwikreddy/ascii-video](https://github.com/ruthwwikreddy/ascii-video)
